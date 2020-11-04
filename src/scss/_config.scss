@@ -1,0 +1,29 @@
+// global styles import
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@200&family=Roboto&display=swap');
+// tipo de letra  cc=comunidad campesina
+$ff-1: 'Bebas Neue', cursive;
+$ff-2: 'Roboto', sans-serif;
+$ff-3: 'Nunito', sans-serif;
+
+$color1: #19d3da;
+$color2: #373a40;
+$color3: #686d76;
+$color4: #eeeeee;
+
+@mixin desde ($size) {
+  @media screen and (min-width: $size){
+    @content;
+  }
+}
+
+@mixin hasta ($size) {
+  @media screen and (max-width: $size){
+    @content;
+  }
+}
+
+@mixin desde_hasta($desde,$hasta) {
+  @media screen and (min-width: $desde) and (max-width: $hasta){
+    @content;
+  }
+}
