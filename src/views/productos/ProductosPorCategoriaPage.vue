@@ -1,17 +1,17 @@
 <template>
-  <div class="grid-x grid-margin-x">
-    <filtrar-productos />
+  <div>
+    <productos-por-categoria />
   </div>
 </template>
 
 <script>
 
-  import FiltrarProductos from '@/components/productos/FiltrarProductos.vue'
+  import ProductosPorCategoria from '@/components/productos/ProductosPorCategoria.vue'
 
   export default {
     name: 'ProductosPorCategoriaPage',
     components: {
-      FiltrarProductos
+      ProductosPorCategoria
     }
   }
 </script>

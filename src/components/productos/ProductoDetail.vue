@@ -1,26 +1,26 @@
 <template>
   <div v-if="producto" class="grid-x grid-margin-x producto">
-    <div class="cell small-12 large-7">
-      <img
-        class="producto__img" 
+    <div class="cell small-12 medium-7">
+      <img 
         :src="producto.main_image" 
-      >
-      <div class="producto__images">
+        class="producto__img">
+      <div class="producto__imgs">
         <img 
-          class="producto__images__img"
-          :src="producto.second_image">
+          :src="producto.second_image"
+          class="producto__imgs__img">
         <img 
-          class="producto__images__img"
-          :src="producto.third_image">
+          :src="producto.third_image"
+          class="producto__imgs__img">
       </div>
     </div>
-    <div class="cell small-12 large-5">
-      <p class="producto__name">{{ producto.name }}</p>
+
+    <div class="cell small-12 medium-5">
+      <h3 class="producto__title"> {{ producto.name }} </h3>
       <p class="producto__categorias">
-        <span 
-          class="producto__categorias__categoria"
+        <span
           v-for="categoria in producto.category"
-          :key="categoria.id">
+          :key="categoria.id" 
+          class="producto__categorias__categoria">
             {{ categoria.name }}
         </span>
       </p>
@@ -29,24 +29,24 @@
           class="producto__colores__color"
           v-for="color in producto.colors"
           :key="color.id"
-          :style="{ background: color.value }">
-            
+          :style="{ background: color.value}">
         </span>
       </p>
-      <p class="producto__precio">$ {{ producto.price }}</p>
+      <p class="producto__price">
+        $ {{ producto.price }}
+      </p>
     </div>
-    <div class="cell">
-      <p class="producto__descripcion" v-html="producto.description"></p>
+
+    <div class="cell small-12">
+      <p class="producto__description" v-html="producto.description">
+      </p>
     </div>
-  </div>
-  <div v-else>
-    cargando....
   </div>
 </template>
 
 <script>
 
-  import apiProductos from '@/api/apiProductos'
+  import apiProductos from '@/api/productos'
 
   export default {
     name: 'ProductoDetail',
@@ -57,83 +57,79 @@
     },
     methods: {
       recuperarProducto: function () {
-        apiProductos.getProducto(this.$route.params.id).then(
+        apiProductos.recuperarProducto(this.$route.params.id).then(
           (response) => {
-            console.log('res: ', response)
             this.producto = response.data
+            console.log(response)
           }
         )
       }
     },
-    mounted() {
+    beforeMount () {
       this.recuperarProducto()
-    },
+    }
   }
 </script>
 
 <style lang="scss" scoped>
   .producto {
-    margin: 10px;
-    background: $color4;
-    padding-bottom: 1em;
-    padding-top: 1em;
     &__img {
       width: 100%;
-      height: 150px;
+      height: 200px;
       margin-bottom: 10px;
-      @include desde(720px) {
+      @include desde($medium) {
         height: 300px;
       }
-    }
-    &__images {
+    } 
+    &__imgs {
       display: flex;
       justify-content: center;
       align-items: center;
       &__img {
-        width: 50px;
-        height: 50px;
+        width: 100px;
+        height: 100px;
         margin: 5px;
-        @include desde(720px) {
-          width: 100px;
-          height: 100px;
-        }
       }
     }
-    &__name {
+    &__title {
       font-family: $ff-1;
-      font-size: 24px;
-      color: $color2;
+      font-size: 20px;
+      color: $color-2;
+      margin-top: 1em;
       margin-bottom: 1em;
     }
     &__categorias {
-      border: 1px solid $color3;
+      border: 1px solid;
       padding: 10px;
       border-radius: 10px;
       margin-bottom: 1em;
       &__categoria {
+        color: $color-3;
         display: block;
-        color: $color3;
         margin: 5px;
       }
     }
     &__colores {
-      display: flex;
-      border: 1px solid $color1;
+      border: 1px solid $color-1;
       padding: 10px;
       border-radius: 10px;
       margin-bottom: 1em;
+      display: flex;
       &__color {
         width: 30px;
         height: 30px;
-        border: 1px solid $color2;
+        border: 1px solid $color-3;
         margin: 5px;
       }
     }
-    &__precio {
+    &__price {
       font-size: 26px;
-      color: $color1;
+      color: $color-1;
       font-weight: bold;
       font-family: $ff-2;
+    }
+    &__description {
+      margin-top: 1em;
     }
   }
 </style>

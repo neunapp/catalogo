@@ -1,7 +1,7 @@
 <template>
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
-      <h1 class="cell title">Lista de Productos</h1>
+      <h1 class="cell title">Lista de productos</h1>
       <productos-populares />
     </div>
   </div>
@@ -19,5 +19,10 @@
   }
 </script>
 
-<style  lang="scss" scoped>
+<style lang="scss" scoped>
+  .title {
+    font-family: $ff-1;
+    text-align: center;
+    font-size: 20px;
+  }
 </style>

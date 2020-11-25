@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="grid-x">
     <producto-detail />
   </div>
 </template>
@@ -9,7 +9,7 @@
   import ProductoDetail from '@/components/productos/ProductoDetail.vue'
 
   export default {
-    name: 'DetalleProductoPage',
+    name: 'ProductosDetailPage',
     components: {
       ProductoDetail
     }

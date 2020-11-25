@@ -1,26 +1,27 @@
 <template>
-  <div class="grid-x grid-margin-x align-center">
+  <div class="cell grid-x grid-margin-x">
     <div 
       class="cell small-6 medium-4 large-3"
       v-for="producto in productos"
       :key="producto.id">
-      <v-card-producto
+      <v-card-producto 
         :image="producto.main_image"
         :name="producto.name"
         :price="parseFloat(producto.price)"
-        :link="{ name: 'ver-producto', params: {'id': producto.id }}"
-       />
+        :ruta="{ name: 'detalle-producto', params: {id: producto.id}}"
+      />
     </div>
   </div>
 </template>
 
 <script>
-  //
-  import apiProductos from '@/api/apiProductos'
+
+  import apiProductos from '@/api/productos'
+
   import VCardProducto from '@/components/base/VCardProducto.vue'
 
   export default {
-    name: 'FiltrarProductos',
+    name: 'ProductosPorCategoria',
     components: {
       VCardProducto
     },
@@ -31,12 +32,14 @@
     },
     watch: {
       '$route.params.category': function () {
-        this.cargarProductos()
+        this.filtrarProductos()
       }
     },
     methods: {
-      cargarProductos: function () {
-        let filtros = 'category=' + this.$route.params.category
+      filtrarProductos: function () {
+        console.log(this.$route.query.colors)
+        let filtros = 'category=' + this.$route.params.category + '&?colors=' + this.$route.query.colors // parte de la solucion a la tarea
+        console.log(filtros)
         apiProductos.filtrarProductos(filtros).then(
           (response) => {
             this.productos = response.data.results
@@ -44,9 +47,9 @@
         )
       }
     },
-    mounted() {
-      this.cargarProductos()
-    },
+    beforeMount () {
+      this.filtrarProductos()
+    }
   }
 </script>
 

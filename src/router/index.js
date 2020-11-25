@@ -1,10 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
-//
 import Home from '../views/Home.vue'
-import ProductosPage from '@/views/ProductosPage.vue'
-import CategoriasPage from '@/views/CategoriasPage.vue'
-import ProductosPorCategoriaPage from '@/views/ProductosPorCategoriaPage.vue'
-import DetalleProductoPage from '@/views/DetalleProductoPage.vue'
+import ProductosPage from '@/views/productos/ProductosPage.vue'
+import CategoriasPage from '@/views/categorias/CategoriasPage.vue'
+import ProductosPorCategoriaPage from '@/views/productos/ProductosPorCategoriaPage.vue'
+import ProductosDetailPage from '@/views/productos/ProductosDetailPage.vue'
 
 const routes = [
   {
@@ -18,21 +17,22 @@ const routes = [
     component: ProductosPage
   },
   {
-    path: '/por-categorias',
+    path: '/categorias',
     component: CategoriasPage,
     children: [
       {
-        path: '/:category',
-        name: 'productos-categorias',
-        component: ProductosPorCategoriaPage
+        path: ':category',
+        name: 'categorias',
+        component: ProductosPorCategoriaPage,
+        query: null, // parte de solucion a la tarea
       },
       {
-        path: '/ver-producto/:id',
-        name: 'ver-producto',
-        component: DetalleProductoPage
+        path: '/producto-detalle/:id',
+        name: 'detalle-producto',
+        component: ProductosDetailPage
       },
     ]
-  },
+  }
 ]
 
 const router = createRouter({

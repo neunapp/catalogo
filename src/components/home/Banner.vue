@@ -1,9 +1,9 @@
 <template>
   <div class="banner">
     <img 
-      src="../../assets/fondo.jpg" 
       class="banner__img"
-    >
+      src="../../assets/fondo.jpg">
+    
     <h1 class="banner__title">Bienvenido a mi tienda de practicas</h1>
     <div class="banner__copy">
       <p class="banner__copy__text">
@@ -21,36 +21,35 @@
 
 <style lang="scss" scoped>
   .banner {
+    text-align: center;
     &__img {
       width: 100%;
       height: 200px;
-      @include desde (768px) {
-        height: 350px;
+      @include desde($medium) {
+        height: 300px;
       }
-      @include desde (1024px) {
-        height: 400px;
+      @include desde($large) {
+        height: 550px;
       }
     }
     &__title {
-      text-align: center;
       font-family: $ff-1;
-      color: $color2;
+      color: $color-1;
     }
     &__copy {
       padding: 1em;
-      background: $color3;
-      @include desde (768px) {
-        margin: 1em;
+      background: $color-3;
+      @include desde ($medium) {
+        margin: 2em;
       }
-      @include desde (1024px) {
+      @include desde ($large) {
         margin-left: 8em;
         margin-right: 8em;
       }
       &__text {
         font-size: 12px;
         font-family: $ff-3;
-        color: $color4;
-        text-align: center;
+        color: $color-4;
       }
     }
   }

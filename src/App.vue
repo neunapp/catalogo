@@ -1,17 +1,23 @@
 <template>
-  <header-main />
+  <main-header />
   <router-view/>
 </template>
+
 <script>
 
-  import HeaderMain from '@/components/includes/HeaderMain.vue'
+  import MainHeader from '@/components/includes/MainHeader.vue'
 
   export default {
     name: 'App',
     components: {
-      HeaderMain
+      MainHeader
     }
   }
 </script>
+
 <style lang="scss">
+ * {
+   padding: 0px;
+   margin: 0px;
+ }
 </style>

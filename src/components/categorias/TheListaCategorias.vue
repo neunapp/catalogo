@@ -1,14 +1,13 @@
 <template>
   <div class="cell">
-    <ul class="catagorias">
+    <ul class="lista">
       <li 
-        class="catagorias__item"
-        v-for="categoria in categorias"
-        :key="categoria.id">
-        <router-link
-          class="catagorias__item__link" 
-          :to="{name: 'productos-categorias', params: {'category': categoria.name_unique}}"
-          >
+        v-for="categoria in listaCategorias" 
+        :key="categoria.id" 
+        class="lista__item">
+          <router-link 
+            class="lista__item__link" 
+            :to="{name: 'categorias', params: {'category': categoria.name_unique}}">
             {{ categoria.name }}
           </router-link>
       </li>
@@ -18,32 +17,32 @@
 
 <script>
 
-  import apiProductos from '@/api/apiProductos'
+  import apiCategroias from '@/api/categorias'
 
   export default {
-    name: 'ListaCategoriasProductos',
+    name: 'TheListaCategroias',
     data() {
       return {
-        categorias: []
+        listaCategorias: []
       }
     },
     methods: {
       cargarCategorias: function () {
-        apiProductos.listaCategorias().then(
+        apiCategroias.listaCategorias().then(
           (response) => {
-            this.categorias = response.data
+            this.listaCategorias = response.data
           }
         )
-      }
+      } 
     },
-    mounted() {
+    beforeMount () {
       this.cargarCategorias()
-    },
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-  .catagorias {
+  .lista {
     list-style: none;
     padding: 0px;
     margin: 0px;
@@ -53,10 +52,10 @@
         display: block;
         padding: 10px;
         text-decoration: none;
-        color: $color2;
-        font-family: $ff-2;
+        color: $color-2;
+        font-family: $ff-3;
         &:hover {
-          background: $color4;
+          background: $color-4;
         }
       }
     }

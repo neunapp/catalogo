@@ -1,13 +1,16 @@
 <template>
-  <div class="card-producto">
+  <div class="producto">
     <img 
-      class="card-producto__img"
-      :src="image"
-    >
-    <router-link :to="link" class="card-producto__name">
-      {{ name }}
+      :src="image" 
+      class="producto__img">
+    <router-link 
+      :to="ruta"
+      class="producto__name">
+        {{ name }}
     </router-link>
-    <p class="card-producto__price">$ {{ price }}</p>
+    <p class="producto__price">
+      $ {{ price }}
+    </p>
   </div>
 </template>
 
@@ -18,35 +21,35 @@
       image: String,
       name: String,
       price: Number,
-      link: Object
+      ruta: Object
     }
   }
 </script>
 
 <style lang="scss" scoped>
-  .card-producto {
-    background: $color4;
+  .producto {
+    margin: 5px;
+    background: $color-4;
     &__img {
       width: 100%;
-      height: 150px;
+      height: 100px;
       margin-bottom: 10px;
     }
     &__name {
       font-family: $ff-2;
-      color: $color3;
+      color: $color-3;
       display: block;
+      text-decoration: none;
       padding-left: 10px;
       margin-bottom: 10px;
-      text-decoration: none;
       text-transform: capitalize;
     }
     &__price {
+      font-size: 20px;
+      font-weight: bold;
       padding-left: 10px;
       margin-bottom: 10px;
-      font-family: $ff-2;
-      font-size: 20px;
-      color: $color2;
-      font-weight: bold;
+      color: $color-2;
     }
   }
 </style>

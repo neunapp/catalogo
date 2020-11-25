@@ -1,25 +1,24 @@
 <template>
-  <div class="cell grid-x grid-margin-x align-center">
+  <div class="cell grid-x grid-margin-x">
     <div 
       class="cell small-6 medium-4 large-3"
-      v-for="producto in listaProductos"
+      v-for="producto in productos"
       :key="producto.id">
-      <v-card-producto
+      <v-card-producto 
         :image="producto.main_image"
         :name="producto.name"
         :price="parseFloat(producto.price)"
-        :link="{ name: 'ver-producto', params: {'id': producto.id }}"
+        :ruta="{ name: 'detalle-producto', params: {id: producto.id}}"
       />
     </div>
   </div>
 </template>
 
 <script>
-  // api
-  import apiProductos from '@/api/apiProductos'
-  //
 
-  import VCardProducto from '@/components/base/VCardProducto'
+  import apiProductos from '@/api/productos'
+
+  import VCardProducto from '@/components/base/VCardProducto.vue'
 
   export default {
     name: 'ProductosPopulares',
@@ -28,21 +27,21 @@
     },
     data() {
       return {
-        listaProductos: []
+        productos: []
       }
     },
     methods: {
       cargarProductos: function () {
         apiProductos.productosPopulares().then(
           (response) => {
-            this.listaProductos = response.data.results
-          }   
+            this.productos = response.data.results
+          }
         )
       }
     },
-    mounted() {
+    mounted () {
       this.cargarProductos()
-    },
+    }
   }
 </script>
 
